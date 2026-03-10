@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-cinzel: "Cinzel", serif;
+  --font-jetbrains-mono: "JetBrains Mono", monospace;
+  --font-oswald: "Oswald", sans-serif;
+
+
+  --color-primary: #0E1728;
+  --color-primary-contrast: white;
+  --color-secondary: #060B14;
+  --color-secondary-contrast: white;
+  --color-text: #A7B8D6;
+  --color-text-secondary: #F3E6C1;
+  --color-surface: #0F1C2F;
+  --color-tile: #294160;
+  --color-tile-no-hit: #5A667D;
+  --color-tile-hit: #2DA46A;
+  --color-tile-partial-hit: #C9A34A;
+  --color-gameboard: #162640;
+  --color-gold: #D0A85A;
+  --color-grey: #5A667D;
+  --color-article: #172A44;
+  --color-heading-white: #E8F0FF;
+}
+
+@layer base {
+  body {
+    min-height: 100vh;
+    background: linear-gradient(
+      to bottom,
+      var(--color-primary),
+      var(--color-secondary)
+    );
+    color: var(--color-text);
+  }
+}
