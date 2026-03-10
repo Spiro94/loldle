@@ -10,7 +10,7 @@ export default function Modal({ children }: Props) {
             <div
                 className="absolute inset-0 bg-black/50"
             />
-            <div className="relative bg-primary rounded-lg p-8 shadow-lg flex flex-col gap-4 items-center">
+            <div className="relative bg-primary rounded-lg p-8 shadow-lg flex flex-col gap-4 items-center min-w-lg">
                 {children}
             </div>
         </div>

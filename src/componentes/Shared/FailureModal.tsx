@@ -19,9 +19,9 @@ export default function FailureModal({ answer, onClose, onPlayAgain }: Props) {
                 <span className='font-oswald font-semibold text-xs'>THE ANSWER WAS</span>
                 <span className='font-cinzel text-text-secondary text-2xl font-bold'>{answer}</span>
             </div>
-            <hr className='bg-tile h-1 text-tile' />
+            <hr className="self-stretch h-0.5 bg-tile border-0 m-4" />
             <div className='inline-flex gap-4'>
-                <button onClick={onPlayAgain} className='inline-flex gap-2 items-center bg-tile rounded-full px-5 py-3 font-oswald font-semibold text-sm cursor-pointer'> <RotateCcw size={16} />Try Again</button>
+                <button onClick={onPlayAgain} className='inline-flex gap-2 items-center bg-tile-partial-hit rounded-full px-5 py-3 font-oswald font-semibold text-sm text-primary cursor-pointer hover:bg-gold'> <RotateCcw size={16} />Try Again</button>
             </div>
         </Modal>
     )

@@ -9,12 +9,15 @@ import SuccessModal from '../../Shared/SuccessModal';
 import Word from './Word';
 import MissingCharactersModal from '../../Shared/MissingCharactersModal';
 
-
+type SuccessModalState = {
+    show: boolean;
+    turns?: number;
+}
 
 export default function GameBoard() {
     const { length: wordLength } = usePuzzleLengthContext();
 
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState<SuccessModalState>({ show: false });
     const [showFailureModal, setShowFailureModal] = useState(false);
     const [showMissingCharactersModal, setShowMissingCharactersModal] = useState(false);
 
@@ -41,7 +44,7 @@ export default function GameBoard() {
         setHint(nextAnswer.hint);
         setTurn(0);
         setResults(Array(6).fill(null));
-        setShowSuccessModal(false);
+        setShowSuccessModal({ show: false });
         setShowFailureModal(false);
         setShowHint(false);
         setShowMissingCharactersModal(false);
@@ -68,7 +71,7 @@ export default function GameBoard() {
 
                 if (evaluation.every(state => state === 'correct')) {
                     console.log('Congratulations! You guessed the word!');
-                    setShowSuccessModal(true);
+                    setShowSuccessModal({ show: true, turns: turn + 1 });
                 } else {
                     console.log(`Game over! The correct word was: ${answer}`);
                     setShowFailureModal(true);
@@ -76,7 +79,7 @@ export default function GameBoard() {
             }
             else if (evaluation.every(state => state === 'correct')) {
                 console.log('Congratulations! You guessed the word!');
-                setShowSuccessModal(true);
+                setShowSuccessModal({ show: true, turns: turn + 1 });
                 setTurn(-1);
             }
             else {
@@ -93,7 +96,7 @@ export default function GameBoard() {
         const nextAnswer = pickRandomAnswer();
         setTurn(0);
         setResults(Array(6).fill(null));
-        setShowSuccessModal(false);
+        setShowSuccessModal({ show: false });
         setShowFailureModal(false);
         setShowHint(false);
         setAnswer(nextAnswer.word);
@@ -103,7 +106,7 @@ export default function GameBoard() {
     }
 
     function handleClose() {
-        setShowSuccessModal(false);
+        setShowSuccessModal({ show: false });
         setShowFailureModal(false);
         setShowMissingCharactersModal(false);
     }
@@ -122,7 +125,7 @@ export default function GameBoard() {
                     })
                 }
                 {
-                    showSuccessModal && createPortal(<SuccessModal answer={answer} onClose={handleClose} onPlayAgain={handlePlayAgain} />, document.getElementById('modal')!)
+                    showSuccessModal.show && createPortal(<SuccessModal answer={answer} turns={showSuccessModal.turns!} onClose={handleClose} onPlayAgain={handlePlayAgain} />, document.getElementById('modal')!)
                 }
                 {
                     showFailureModal && createPortal(<FailureModal answer={answer} onClose={handleClose} onPlayAgain={handlePlayAgain} />, document.getElementById('modal')!)
