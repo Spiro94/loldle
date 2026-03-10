@@ -22,7 +22,7 @@ export default function Section() {
                 <div className='flex gap-3'>
                     <button className='mt-2 px-4 py-3 bg-tile text-white rounded-full font-jetbrains-mono font-semibold text-xs cursor-pointer'>Share</button>
                     <button className='mt-2 px-4 py-3 bg-tile text-white rounded-full font-jetbrains-mono font-semibold text-xs cursor-pointer'>Discord</button>
-                    <button className='mt-2 px-4 py-3 bg-tile text-white rounded-full font-jetbrains-mono font-semibold text-xs cursor-pointer'>Copy Score</button>
+                    <button className='mt-2 px-4 py-3 bg-tile-partial-hit text-primary rounded-full font-jetbrains-mono font-bold text-xs cursor-pointer'>Copy Score</button>
                 </div>
 
             </article>

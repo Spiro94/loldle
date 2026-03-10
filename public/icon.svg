@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <defs>
+    <linearGradient id="blade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3E6C1"/>
+      <stop offset="100%" style="stop-color:#C9A34A"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sword 1: top-left to bottom-right diagonal -->
+  <!-- Blade -->
+  <polygon points="8,4 10.5,6.5 30,30 27.5,32.5" fill="url(#blade)" filter="url(#glow)"/>
+  <!-- Tip shine -->
+  <polygon points="8,4 9.5,4 10.5,6.5 8.5,6.5" fill="#F3E6C1"/>
+  <!-- Crossguard -->
+  <rect x="12" y="17" width="12" height="2.5" rx="1.2" transform="rotate(45 18 18.25)" fill="#D0A85A"/>
+  <!-- Handle -->
+  <rect x="26.5" y="28.5" width="7" height="2" rx="1" transform="rotate(45 30 29.5)" fill="#7A8BA8"/>
+  <!-- Pommel -->
+  <circle cx="33.5" cy="36.5" r="2.2" fill="#D0A85A"/>
+
+  <!-- Sword 2: top-right to bottom-left diagonal (mirror) -->
+  <!-- Blade -->
+  <polygon points="36,4 33.5,6.5 14,30 16.5,32.5" fill="url(#blade)" filter="url(#glow)"/>
+  <!-- Tip shine -->
+  <polygon points="36,4 34.5,4 33.5,6.5 35.5,6.5" fill="#F3E6C1"/>
+  <!-- Crossguard -->
+  <rect x="20" y="17" width="12" height="2.5" rx="1.2" transform="rotate(-45 26 18.25)" fill="#D0A85A"/>
+  <!-- Handle -->
+  <rect x="10.5" y="28.5" width="7" height="2" rx="1" transform="rotate(-45 14 29.5)" fill="#7A8BA8"/>
+  <!-- Pommel -->
+  <circle cx="10.5" cy="36.5" r="2.2" fill="#D0A85A"/>
+
+  <!-- Center diamond at crossing -->
+  <polygon points="22,16 24.5,19 22,22 19.5,19" fill="#F3E6C1" filter="url(#glow)"/>
+  <polygon points="22,17 23.5,19 22,21 20.5,19" fill="#D0A85A"/>
+</svg>

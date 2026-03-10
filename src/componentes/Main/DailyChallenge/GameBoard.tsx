@@ -60,10 +60,11 @@ export default function GameBoard() {
                 return next;
             });
 
-            setTurn(prev => prev + 1);
+
 
             if (turn === 5) {
                 console.log(`Turns completed ${word}`);
+                setTurn(-1);
 
                 if (evaluation.every(state => state === 'correct')) {
                     console.log('Congratulations! You guessed the word!');
@@ -76,6 +77,10 @@ export default function GameBoard() {
             else if (evaluation.every(state => state === 'correct')) {
                 console.log('Congratulations! You guessed the word!');
                 setShowSuccessModal(true);
+                setTurn(-1);
+            }
+            else {
+                setTurn(prev => prev + 1);
             }
         }
         else {

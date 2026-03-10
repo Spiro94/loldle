@@ -8,7 +8,10 @@ export default function NavBar() {
     return (
         <header>
             <nav className='flex gap-4 px-5 py-4 bg-surface rounded-2xl justify-between'>
-                <h1 className='text-text-secondary text-3xl font-cinzel font-bold'>LEAGUE WORDLE</h1>
+                <div className='flex items-center gap-3'>
+                    <img src='/icon.svg' alt='' className='h-9 w-9' aria-hidden='true' />
+                    <h1 className='text-text-secondary text-3xl font-cinzel font-bold'>LEAGUE WORDLE</h1>
+                </div>
                 <div className='inline-flex gap-5'>
                     <button onClick={() => scrollTo('home')} className='font-jetbrains-mono font-semibold cursor-pointer hover:text-heading-white'>Home</button>
                     <button onClick={() => scrollTo('how-to-play')} className='font-jetbrains-mono font-semibold cursor-pointer hover:text-heading-white'>How to Play</button>
