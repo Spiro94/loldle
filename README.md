@@ -1,75 +1,82 @@
-# React + TypeScript + Vite
+# League Wordle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+League Wordle is a fan-made League of Legends word puzzle inspired by Wordle. Players guess League-related words (champions, roles, objectives, and game concepts) in up to 6 attempts, with color feedback after each guess.
 
-Currently, two official plugins are available:
+## Goal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Solve the hidden League term in as few guesses as possible. After a win, players can save their score and see top results on the leaderboard.
 
-## React Compiler
+## Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Wordle-style gameplay with 6 attempts per round.
+- League of Legends dictionary with hints for each answer.
+- Select puzzle length (4, 5, 6, or 7 letters).
+- Tile feedback states:
+  - Correct letter and position.
+  - Correct letter, wrong position.
+  - Letter not in answer.
+- Hint reveal button.
+- Success and failure modals.
+- Validation modal for incomplete guesses.
+- Local leaderboard using Zustand + localStorage.
 
-Note: This will impact Vite dev & build performances.
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- Zustand
+- Lucide React
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js 18+
+- npm
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run in Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## How It Works
+
+1. A random answer is selected from the League dictionary based on the chosen word length.
+2. The player enters one letter per tile and submits with Enter.
+3. The guess is evaluated with Wordle-like matching rules.
+4. The round ends on:
+   - Success: all letters are correct.
+   - Failure: 6 guesses used.
+5. On success, the player can store a username and guess count on the local leaderboard.
+
+## Notes
+
+- Scores are persisted in browser localStorage.
+- This is an unofficial fan project and is not affiliated with Riot Games.
