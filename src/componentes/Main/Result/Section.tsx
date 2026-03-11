@@ -1,20 +1,20 @@
+import { useUserScores } from "../../../store/userScores";
 
 export default function Section() {
+    const scores = useUserScores((state) => state.scores);
     return (
         <section id='leaderboard' className='flex gap-5 px-5 py-4 bg-surface rounded-2xl justify-evenly'>
             <article className='flex flex-col gap-2 flex-1 p-4 rounded-xl bg-article'>
                 <h3 className='font-cinzel text-2xl font-bold text-text-secondary'>Daily Top Players</h3>
-                <ol className='font-jetbrains-mono font-medium'>
-                    <li>
-                        Scarkov - 3 guesses
-                    </li>
-                    <li>
-                        Kirikov - 4 guesses
-                    </li>
-                    <li>
-                        Scarkov - 5 guesses
-                    </li>
-                </ol>
+                {
+                    scores.length === 0 ? <p className="font-jetbrains-mono font-medium">No scores available</p> : (<ol className='font-jetbrains-mono font-medium'>
+                        {scores.sort((a, b) => b.score - a.score).slice(0, 3).map((score, index) => {
+                            return <li key={index}>
+                                {`${score.username} - ${score.score} guess${score.score === 1 ? '' : 'es'}`}
+                            </li>
+                        })}
+                    </ol>)
+                }
             </article>
             <article className='flex flex-col gap-2 flex-1 p-4 rounded-xl bg-article'>
                 <h3 className='font-cinzel text-2xl font-bold text-text-secondary'>Share Today's Result</h3>
