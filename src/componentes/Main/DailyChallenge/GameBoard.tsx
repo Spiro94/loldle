@@ -23,6 +23,7 @@ export default function GameBoard() {
 
     const [showHint, setShowHint] = useState(false);
     const [hint, setHint] = useState('');
+    const [hintWarning, setHintWarning] = useState(false);
     const [answer, setAnswer] = useState('');
     const [turn, setTurn] = useState(0);
     const [results, setResults] = useState<(LetterState[] | null)[]>(
@@ -111,6 +112,19 @@ export default function GameBoard() {
         setShowMissingCharactersModal(false);
     }
 
+    function handleShowHint() {
+        if (turn >= 2) {
+            setShowHint(true);
+        }
+        else {
+            console.warn('Hint is available after 2 turns!');
+            setHintWarning(true);
+            setTimeout(() => {
+                setHintWarning(false);
+            }, 3000);
+        }
+    }
+
     return (
         <div className='flex flex-col gap-6 items-center '>
             <div className='grid grid-cols-1 gap-3 p-3 bg-gameboard rounded-2xl'>
@@ -135,8 +149,9 @@ export default function GameBoard() {
                 }
             </div>
             <div className='flex flex-col gap-3 items-center' >
-                <button onClick={() => { setShowHint(true) }} className='bg-tile px-4 py-2 rounded-full font-jetbrains-mono font-semibold cursor-pointer'>Hint ?</button>
+                <button onClick={handleShowHint} className='bg-tile px-4 py-2 rounded-full font-jetbrains-mono font-semibold cursor-pointer'>Hint ?</button>
                 {showHint && <span className='font-jetbrains-mono text-sm text-text-secondary'>{hint}</span>}
+                {hintWarning && <span className='font-jetbrains-mono text-sm text-text-secondary'>Hint is available after 2 turns!</span>}
             </div>
         </div>
     )
